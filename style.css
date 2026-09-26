@@ -160,11 +160,20 @@ body {
 .card-front {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .card-back {
     transform: rotateY(180deg);
+}
+
+/* محتوای جلوی کارت: کل ارتفاع رو پر می‌کند و اگر محتوا زیاد شد،
+   به‌جای رفتن روی فوتر، خودش اسکرول می‌شود */
+.card-front .content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* ================== تایپوگرافی ================== */
@@ -381,9 +390,8 @@ h4 {
 }
 
 .footer-text {
-    position: absolute;
-    bottom: 35px;
-    left: 42px;
+    margin-top: auto;
+    padding-top: 18px;
     font-size: 13px;
     color: #7b9eb0;
     line-height: 1.5;
@@ -705,7 +713,8 @@ h4 {
     .qr-code-wrap { width: 76px; height: 76px; }
     .qr-large { width: 220px; height: 220px; }
     .qr-text { font-size: 11px; }
-    .footer-text, .quote { font-size: 11px; bottom: 22px; left: 24px; }
+    .footer-text { font-size: 11px; padding-top: 12px; }
+    .quote { font-size: 11px; bottom: 22px; left: 24px; }
     .flip-hint { display: none; }
 }
 
