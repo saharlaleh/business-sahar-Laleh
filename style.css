@@ -1,0 +1,728 @@
+/* تنظیمات کلی و ریست */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+    background-color: #03060a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #ffffff;
+    overflow: hidden;
+    position: relative;
+    padding: env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);
+}
+
+/* ================== پس‌زمینه متحرک و فضایی پیشرفته ================== */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #0a1118 0%, #03060a 100%);
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.5;
+    animation: floatOrb 18s infinite alternate ease-in-out;
+    will-change: transform;
+}
+
+.orb-1 {
+    width: 450px;
+    height: 450px;
+    background: #00d4ff;
+    top: -120px;
+    left: -120px;
+}
+
+.orb-2 {
+    width: 350px;
+    height: 350px;
+    background: #0044ff;
+    bottom: -80px;
+    right: -80px;
+    animation-delay: -6s;
+}
+
+.orb-3 {
+    width: 250px;
+    height: 250px;
+    background: #00ffcc;
+    top: 40%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    animation-delay: -12s;
+    opacity: 0.3;
+}
+
+@keyframes floatOrb {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(40px, -60px) scale(1.15); }
+    100% { transform: translate(-50px, 40px) scale(0.9); }
+}
+
+/* ذرات نورانی متحرک (کانواس) */
+.particles-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    opacity: 0.85;
+}
+
+.grid-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.5;
+}
+
+/* ================== کانتینر کارت (سه‌بعدی) ================== */
+.card-container {
+    width: 580px;
+    height: 800px;
+    max-width: 92vw;
+    max-height: 88vh;
+    perspective: 1800px;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+    animation: cardEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+}
+
+@keyframes cardEntrance {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.card {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+    border-radius: 28px;
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.25),
+                0 0 80px rgba(0, 68, 255, 0.15);
+}
+
+.card:hover {
+    box-shadow: 0 0 60px rgba(0, 212, 255, 0.4),
+                0 0 100px rgba(0, 255, 204, 0.2);
+}
+
+/* هنگام حرکت موس، ترنزیشن سریع‌تر می‌شود تا تیلت نرم و بی‌تأخیر باشد */
+.card.tilting {
+    transition: transform 0.15s ease-out;
+}
+
+/* افکت شیشه‌ای مات (Glassmorphism) */
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 28px;
+    padding: 42px;
+    background: rgba(10, 18, 28, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1.5px solid rgba(0, 212, 255, 0.3);
+    overflow: hidden;
+    box-shadow: inset 0 0 40px rgba(0, 212, 255, 0.08);
+}
+
+.card-front {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+/* ================== تایپوگرافی ================== */
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    line-height: 1.2;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+}
+
+h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 19px;
+    color: #00d4ff;
+    font-weight: 600;
+    margin-top: 10px;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+h3 {
+    font-size: 16px;
+    color: #79f2ff;
+    font-weight: 400;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 15px;
+    color: #00d4ff;
+    font-weight: 600;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.divider {
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(90deg, #00d4ff, #00ffcc);
+    margin-bottom: 22px;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.7);
+    border-radius: 2px;
+}
+
+.divider-small {
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, #00d4ff, #00ffcc);
+    margin: 15px 0;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    margin-top: 8px;
+    font-size: 12px;
+    color: #8fe6c8;
+    font-weight: 500;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #00ffb0;
+    box-shadow: 0 0 8px rgba(0, 255, 176, 0.9);
+    animation: statusBlink 2.4s ease-in-out infinite;
+}
+
+@keyframes statusBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.cloud-icon {
+    font-size: 48px;
+    color: #00d4ff;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.9);
+    margin-top: 5px;
+    animation: floatIcon 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatIcon {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-6px); }
+}
+
+/* تگ‌ها */
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.tag {
+    background: rgba(0, 212, 255, 0.06);
+    border: 1px solid rgba(0, 212, 255, 0.25);
+    border-radius: 12px;
+    padding: 9px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #d0f0ff;
+    backdrop-filter: blur(5px);
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tag:hover {
+    background: rgba(0, 212, 255, 0.2);
+    border-color: #00d4ff;
+    color: #ffffff;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+}
+
+.tag i {
+    color: #00d4ff;
+    font-size: 16px;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+}
+
+/* اطلاعات تماس (قابل کپی) */
+.contact-info p {
+    font-size: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #e0f2fe;
+    font-weight: 400;
+}
+
+.contact-info i {
+    color: #00d4ff;
+    width: 24px;
+    text-align: center;
+    font-size: 18px;
+    text-shadow: 0 0 12px rgba(0, 212, 255, 0.7);
+}
+
+.copyable {
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 6px 10px;
+    margin-left: -10px;
+    transition: background 0.25s ease;
+}
+
+.copyable:hover {
+    background: rgba(0, 212, 255, 0.08);
+}
+
+.copy-hint {
+    margin-left: auto;
+    font-size: 13px !important;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    text-shadow: none !important;
+    width: auto !important;
+}
+
+.copyable:hover .copy-hint {
+    opacity: 0.6;
+}
+
+/* دکمه تماس */
+.contact-btn {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(0, 85, 255, 0.2));
+    border: 2px solid #00d4ff;
+    color: #00d4ff;
+    padding: 13px 28px;
+    border-radius: 35px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    width: fit-content;
+    text-decoration: none;
+    transition: all 0.35s ease;
+    margin-top: 10px;
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.15);
+    backdrop-filter: blur(5px);
+}
+
+.contact-btn:hover {
+    background: #00d4ff;
+    color: #03060a;
+    box-shadow: 0 0 35px rgba(0, 212, 255, 0.8), 0 0 15px rgba(0, 255, 204, 0.5);
+    transform: translateY(-2px) scale(1.04);
+}
+
+.contact-btn:focus-visible,
+.copyable:focus-visible {
+    outline: 2px solid #00ffcc;
+    outline-offset: 3px;
+}
+
+.footer-text {
+    position: absolute;
+    bottom: 35px;
+    left: 42px;
+    font-size: 13px;
+    color: #7b9eb0;
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+.flip-hint {
+    position: absolute;
+    bottom: 35px;
+    right: 42px;
+    font-size: 12px;
+    color: #5c8399;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    letter-spacing: 0.3px;
+}
+
+.flip-hint i {
+    animation: spinSlow 6s linear infinite;
+}
+
+@keyframes spinSlow {
+    to { transform: rotate(360deg); }
+}
+
+/* ================== محتوای پشت کارت ================== */
+.back-header p {
+    font-size: 15px;
+    color: #d0e7f5;
+    line-height: 1.7;
+    margin-top: 8px;
+}
+
+.learning-section ul {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.learning-section li {
+    font-size: 15px;
+    color: #d8f0ff;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 400;
+}
+
+.learning-section li::before {
+    content: '▹';
+    color: #00d4ff;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+}
+
+.bottom-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 35px;
+}
+
+.qr-area {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.qr-code-wrap {
+    position: relative;
+    width: 108px;
+    height: 108px;
+    cursor: pointer;
+    transition: transform 0.25s ease;
+}
+
+.qr-code-wrap:hover {
+    transform: translateY(-2px) scale(1.03);
+}
+
+.qr-code {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #00d4ff;
+    border-radius: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #ffffff;
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.35);
+    padding: 7px;
+    overflow: hidden;
+    transition: box-shadow 0.25s ease;
+}
+
+.qr-code-wrap:hover .qr-code {
+    box-shadow: 0 0 35px rgba(0, 212, 255, 0.55);
+}
+
+.qr-code img,
+.qr-code canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 4px;
+}
+
+.qr-zoom-hint {
+    position: absolute;
+    inset: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(3, 6, 10, 0.45);
+    color: #ffffff;
+    font-size: 20px;
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+.qr-code-wrap:hover .qr-zoom-hint,
+.qr-code-wrap:focus-visible .qr-zoom-hint {
+    opacity: 1;
+}
+
+/* ================== مودال بزرگ‌نمایی بارکد ================== */
+.qr-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 6, 10, 0.85);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 200;
+    cursor: pointer;
+}
+
+.qr-modal.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.qr-modal-content {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 28px 28px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 0 60px rgba(0, 212, 255, 0.4);
+    transform: scale(0.9);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
+    max-width: 88vw;
+}
+
+.qr-modal.show .qr-modal-content {
+    transform: scale(1);
+}
+
+.qr-large {
+    width: 260px;
+    height: 260px;
+    max-width: 68vw;
+    max-height: 68vw;
+}
+
+.qr-large img,
+.qr-large canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.qr-modal-content p {
+    color: #03060a;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.qr-close-hint {
+    color: #6b7f8c;
+    font-size: 12px;
+}
+
+.qr-text {
+    font-size: 13px;
+    color: #c5e1f0;
+    line-height: 1.5;
+}
+
+.qr-text i {
+    display: block;
+    margin-top: 6px;
+    color: #00d4ff;
+    font-size: 16px;
+}
+
+.signature {
+    font-family: 'Brush Script MT', cursive, sans-serif;
+    font-size: 44px;
+    color: #00d4ff;
+    transform: rotate(-5deg);
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.7), 0 0 35px rgba(0, 212, 255, 0.3);
+    padding-bottom: 5px;
+}
+
+.quote {
+    position: absolute;
+    bottom: 35px;
+    left: 42px;
+    right: 42px;
+    font-size: 13px;
+    color: #7b9eb0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-style: italic;
+}
+
+.quote i {
+    color: #00d4ff;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.bg-glow-right {
+    position: absolute;
+    width: 260px;
+    height: 260px;
+    right: -100px;
+    top: -80px;
+    background: #0044ff;
+    filter: blur(90px);
+    opacity: 0.3;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* هودی و قفل روی جلو */
+.hoodie-overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.hoodie-shape {
+    position: absolute;
+    width: 220px;
+    height: 220px;
+    right: -70px;
+    bottom: -70px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.12), transparent 70%);
+    border-radius: 50%;
+}
+
+.lock-icon {
+    position: absolute;
+    right: 38px;
+    bottom: 130px;
+    font-size: 22px;
+    color: rgba(0, 212, 255, 0.35);
+}
+
+/* ================== toast برای کپی موفق ================== */
+.toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: rgba(0, 212, 255, 0.15);
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    color: #d0f0ff;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-size: 14px;
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 100;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ================== واکنش‌گرا (موبایل و تبلت) ================== */
+@media (max-width: 620px) {
+    .card-container {
+        width: 92vw;
+        height: 84vh;
+    }
+    .card-front, .card-back {
+        padding: 24px;
+    }
+    h1 { font-size: 22px; }
+    h2 { font-size: 15px; }
+    h3 { font-size: 13px; }
+    h4 { font-size: 14px; }
+    .tag { font-size: 12px; padding: 7px 12px; }
+    .contact-info p { font-size: 14px; }
+    .contact-btn { font-size: 14px; padding: 10px 20px; }
+    .back-header p { font-size: 13px; }
+    .learning-section li { font-size: 13px; }
+    .signature { font-size: 34px; }
+    .qr-code-wrap { width: 76px; height: 76px; }
+    .qr-large { width: 220px; height: 220px; }
+    .qr-text { font-size: 11px; }
+    .footer-text, .quote { font-size: 11px; bottom: 22px; left: 24px; }
+    .flip-hint { display: none; }
+}
+
+/* حرکت را برای کاربرانی که ترجیح می‌دهند کمتر ببینند، کاهش بده */
+@media (prefers-reduced-motion: reduce) {
+    .card-container,
+    .orb,
+    .cloud-icon,
+    .status-dot,
+    .flip-hint i {
+        animation: none !important;
+    }
+    .card-container {
+        opacity: 1;
+        transform: none;
+    }
+    .card {
+        transition: transform 0.4s ease;
+    }
+}

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahar Laleh - Digital Card</title>
+    <!-- لینک به فایل CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- لینک به آیکون‌های فونت‌آوسام -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- لینک به فونت‌های گوگل (پاپینز برای متن، اوربیترون برای عناوین) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ================= پس‌زمینه متحرک و فضایی ================= -->
+    <div class="animated-bg">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+        <canvas id="particleCanvas" class="particles-canvas"></canvas>
+        <div class="grid-overlay"></div>
+    </div>
+
+    <div class="card-container">
+        <div class="card" id="flipCard">
+
+            <!-- ================= FRONT OF CARD ================= -->
+            <div class="card-front">
+                <div class="content">
+                    <div class="header">
+                        <div>
+                            <h1>Sahar Laleh</h1>
+                            <div class="status-pill"><span class="status-dot"></span> Available for work</div>
+                        </div>
+                        <i class="fa-solid fa-cloud-arrow-down cloud-icon"></i>
+                    </div>
+                    <h2>Cloud &amp; DevOps Specialist</h2>
+                    <h3>Cloud Solutions &amp; Infrastructure</h3>
+                    <div class="divider"></div>
+
+                    <div class="expertise-section">
+                        <h4>Areas of Expertise</h4>
+                        <div class="tags">
+                            <span class="tag"><i class="fa-solid fa-cloud"></i> Cloud Computing</span>
+                            <span class="tag"><i class="fa-solid fa-cube"></i> Containerization</span>
+                            <span class="tag"><i class="fa-solid fa-infinity"></i> DevOps &amp; CI/CD</span>
+                            <span class="tag"><i class="fa-solid fa-network-wired"></i> Cloud Networking</span>
+                            <span class="tag"><i class="fa-solid fa-server"></i> Cloud Infrastructure</span>
+                            <span class="tag"><i class="fa-solid fa-desktop"></i> Virtualization</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <p class="copyable" data-copy="@Sahar_Laleh_"><i class="fa-brands fa-instagram"></i> @Sahar_Laleh_ <i class="fa-regular fa-copy copy-hint"></i></p>
+                        <p class="copyable" data-copy="saharlaleh84@gmail.com"><i class="fa-solid fa-envelope"></i> saharlale84@gmail.com <i class="fa-regular fa-copy copy-hint"></i></p>
+                        <p class="copyable" data-copy="09331746068"><i class="fa-solid fa-phone"></i> 09331746068 <i class="fa-regular fa-copy copy-hint"></i></p>
+                    </div>
+
+                    <a class="contact-btn" href="tel:09331745058" onclick="event.stopPropagation();">
+                        <i class="fa-solid fa-phone"></i> Contact Me <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+
+                    <div class="footer-text">
+                        <p>Better Infrastructure<br>Safer Tomorrow</p>
+                    </div>
+                </div>
+
+                <!-- هودی و افکت‌های پس‌زمینه جلو -->
+                <div class="hoodie-overlay">
+                    <div class="hoodie-shape"></div>
+                    <div class="lock-icon"><i class="fa-solid fa-lock"></i></div>
+                </div>
+
+                <div class="flip-hint"><i class="fa-solid fa-arrows-rotate"></i> Tap to flip</div>
+            </div>
+
+            <!-- ================= BACK OF CARD ================= -->
+            <div class="card-back">
+                <div class="content">
+                    <div class="back-header">
+                        <h4>About Me</h4>
+                        <p>Computer Engineering Student passionate about Cloud Computing, DevOps and building scalable, secure infrastructure.</p>
+                        <div class="divider-small"></div>
+                    </div>
+
+                    <div class="learning-section">
+                        <h4>Currently Learning</h4>
+                        <ul>
+                            <li>Cloud Platforms (AWS / Azure)</li>
+                            <li>Kubernetes &amp; Docker</li>
+                            <li>CI/CD Pipelines</li>
+                            <li>Infrastructure as Code</li>
+                            <li>Linux Administration</li>
+                        </ul>
+                    </div>
+
+                    <div class="bottom-section">
+                        <div class="qr-area">
+                            <div class="qr-code-wrap">
+                                <div class="qr-code" id="qrcode"></div>
+                                <span class="qr-zoom-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+                            </div>
+                            <div class="qr-text">
+                                <p>Tap to enlarge<br>&amp; save my contact</p>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </div>
+                        </div>
+
+                        <div class="signature">
+                            Sahar <i class="fa-regular fa-heart"></i>
+                        </div>
+                    </div>
+
+                    <div class="quote">
+                        <i class="fa-solid fa-lock"></i> "Clouds aren't just in the sky, they're in our future."
+                    </div>
+                </div>
+
+                <!-- افکت‌های پس‌زمینه پشت کارت -->
+                <div class="bg-glow-right"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="toast" id="toast">Copied!</div>
+
+    <!-- بزرگ‌نمایی بارکد برای اسکن راحت‌تر -->
+    <div class="qr-modal" id="qrModal">
+        <div class="qr-modal-content" onclick="event.stopPropagation();">
+            <div class="qr-large" id="qrcodeLarge"></div>
+            <p>Scan to save Sahar's contact</p>
+            <span class="qr-close-hint">Tap anywhere to close</span>
+        </div>
+    </div>
+
+    <!-- کتابخانه تولید بارکد QR واقعی -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- لینک به فایل JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
